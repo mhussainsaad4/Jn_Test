@@ -6,4 +6,19 @@
     <!--    Splash-->
     <string name="splash_logo_desc">Splash Logo</string>
 
+    <!--    Search-->
+    <string name="search_head">Repository Library</string>
+    <string name="search_bar_text">Search for repository</string>
+    <string name="search_saved_repo">Saved Repositories</string>
+    <!--    Search Recycler View-->
+    <string name="recycler_head">schollz / croc</string>
+    <string name="recycler_sub">A minimalist knowledge base manager</string>
+
+    <!--    Show-->
+    <string name="show_lang">Javascript</string>
+    <string name="show_forks">Forks</string>
+    <string name="show_issues">Issues</string>
+    <string name="show_starred">Starred By</string>
+    <string name="show_release">Last Release Version</string>
+
 </resources>

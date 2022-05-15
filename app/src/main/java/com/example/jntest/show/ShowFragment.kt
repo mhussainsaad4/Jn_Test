@@ -63,6 +63,11 @@ class ShowFragment : Fragment() {
         initCode()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
     private fun initCode() {
         if (this::binding.isInitialized) {
             binding.lifecycleOwner = this@ShowFragment
@@ -72,8 +77,7 @@ class ShowFragment : Fragment() {
             navController = Navigation.findNavController(fragmentView)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+    fun goBack() {
+        navController.popBackStack()
     }
 }

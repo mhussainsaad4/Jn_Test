@@ -67,6 +67,12 @@ class SplashFragment : Fragment() {
         initCode()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+        job = null
+    }
+
     private fun initCode() {
         if (this::binding.isInitialized) {
             binding.lifecycleOwner = this@SplashFragment
@@ -76,12 +82,6 @@ class SplashFragment : Fragment() {
             navController = Navigation.findNavController(fragmentView)
 
         waitForThreeSeconds()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-        job = null
     }
 
     /**
