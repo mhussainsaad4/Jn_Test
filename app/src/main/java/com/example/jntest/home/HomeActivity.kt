@@ -25,7 +25,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initCode() {
-        binding.lifecycleOwner = this@HomeActivity
+        if (this::binding.isInitialized) binding.lifecycleOwner = this@HomeActivity
         val navHostFragment = supportFragmentManager.findFragmentById(
             binding.navHostFragment.id
         ) as NavHostFragment
