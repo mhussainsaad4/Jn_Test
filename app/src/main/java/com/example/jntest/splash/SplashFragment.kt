@@ -10,7 +10,9 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.jntest.R
 import com.example.jntest.databinding.FragmentSplashBinding
+import com.example.jntest.utils.K.Constants.Companion.SPLASH_DELAY
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.*
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -25,6 +27,8 @@ class SplashFragment : Fragment() {
 
     private lateinit var fragmentView: View
     private lateinit var navController: NavController
+
+    private var job: Job? = null
 
     companion object {
         @JvmStatic
@@ -70,10 +74,31 @@ class SplashFragment : Fragment() {
         }
         if (this::fragmentView.isInitialized)
             navController = Navigation.findNavController(fragmentView)
+
+        waitForThreeSeconds()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        job = null
+    }
+
+    /**
+     * delay for splash
+     */
+    private fun waitForThreeSeconds() {
+        job = CoroutineScope(Dispatchers.Main).launch {
+            withContext(Dispatchers.IO) {
+                delay(SPLASH_DELAY)
+                withContext(Dispatchers.Main) {
+                    openSearchScreen()
+                }
+            }
+        }
+    }
+
+    private fun openSearchScreen() {
+        navController.navigate(R.id.action_splashFragment_to_searchFragment)
     }
 }
